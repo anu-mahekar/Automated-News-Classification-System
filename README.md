@@ -8,6 +8,11 @@ A Machine Learning-powered Streamlit web application that classifies live news h
 
 https://automated-news-classification-system-hmmqpcqfkgvpzgxrs6yxpx.streamlit.app/
 
+## 🎥 Project Demo
+** 
+
+https://github.com/user-attachments/assets/c843f0ee-672c-4c20-b8f1-a2e26908d16a
+
 ---
 
 ## ✨ Features
