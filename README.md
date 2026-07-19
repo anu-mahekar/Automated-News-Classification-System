@@ -65,6 +65,14 @@ streamlit run app.py
 
 ---
 
+## 📊 Model Performance
+
+- Accuracy: 91.75%
+- Precision: 91.73%
+- Recall: 91.75%
+- F1 Score: 91.73%
+
+
 ## 👩‍💻 Author
 
 **Anusha ullas Mahekar**
