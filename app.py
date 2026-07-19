@@ -78,7 +78,7 @@ model = pickle.load(open("model.pkl", "rb"))
 st.title("📰 Automated News Classification System")
 
 # API key
-API_KEY = "7717c15bb55349828c2e2dd292397254"
+API_KEY = st.secrets["NEWS_API_KEY"]
 
 # Categories
 categories = {
