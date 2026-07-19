@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.box {
+  display:inline-block;
+  width:60px;
+  height:40px;
+  margin:8px;
+  border:2px solid black;
+  text-align:center;
+  line-height:40px;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box" onclick="copyCode('#9
+!pip install langchain langchain_openai wikipedia pydantic
+!pip install langchain_cohere
+
+from langchain_openai import ChatOpenAI
+from langchain_core.prompts import PromptTemplate
+from langchain_core.output_parsers import PydanticOutputParser
+from langchain_core.runnables import RunnableSequence
+from pydantic import BaseModel
+import wikipedia
+import os
+from langchain_cohere import ChatCohere
+
+os.environ["COHERE_API_KEY"] = "rHbHaLDvcJ03NDNcBNlNNpz9cMwpSxbz0FAE1UgY"
+
+class InstitutionSchema(BaseModel):
+    founder: str
+    fyear: str
+    branches: str
+    employees: str
+    summary: str
+
+from langchain_core.output_parsers import BaseOutputParser
+
+class Parser(BaseOutputParser):
+    def get_format_instructions(self):
+        return """Give output in this format:
+                  Founder -
+                  Founded Year -
+                  Branches -
+                  Employees -
+                  Summary -
+        """
+
+    def parse(self, text):
+        data = {}
+        for line in text.split("\n"):
+            if "-" in line:
+                key, value = line.split("-", 1)
+                data[key.strip()] = value.strip()
+        return data
+
+parser = Parser()
+
+prompt = PromptTemplate(
+    template="""
+Extract the following details from the text:
+{format_instructions}
+Text:
+{text}
+""",
+    input_variables=["text"],
+    partial_variables={"format_instructions": parser.get_format_instructions()}
+)
+
+llm = ChatCohere(model_name="command-xlarge-nightly")
+
+chain = prompt | llm | parser
+
+institution_name = input("Enter Institution Name: ")
+
+try:
+    wiki_text = wikipedia.summary(institution_name, sentences=10)
+except:
+    wiki_text = "No data found"
+
+print("\n--- Wikipedia Data ---\n")
+print(wiki_text)
+
+result = chain.invoke({"text": wiki_text})
+
+print("\nExtracted Data:\n")
+for k, v in result.items():
+    print(f"{k}: {v}")
+')">1</div>
+<div class="box" onclick="copyCode('Program 2 code here')">2</div>
+<div class="box" onclick="copyCode('Program 3 code here')">3</div>
+<div class="box" onclick="copyCode('Program 4 code here')">4</div>
+<div class="box" onclick="copyCode('Program 5 code here')">5</div>
+<div class="box" onclick="copyCode('Program 6 code here')">6</div>
+<div class="box" onclick="copyCode('Program 7 code here')">7</div>
+<div class="box" onclick="copyCode('Program 8 code here')">8</div>
+<div class="box" onclick="copyCode('Program 9 code here')">9</div>
+<div class="box" onclick="copyCode('Program 10 code here')">10</div>
+
+<script>
+function copyCode(code){
+  navigator.clipboard.writeText(code);
+  alert("Copied!");
+}
+</script>
+
+</body>
+</html>
