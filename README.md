@@ -62,4 +62,4 @@ streamlit run app.py
 
 ## 👩‍💻 Author
 
-**Anusha Mahekar**
+**Anusha ullas Mahekar**
